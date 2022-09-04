@@ -1,0 +1,460 @@
+.main-card {
+    background: linear-gradient(to bottom, #f1f4f9, #dff1ff);
+    margin: 0;
+}
+
+.main-header {
+    width: 100%;
+    margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .app-search .form-control:focus {
+        box-shadow: none !important;
+        border-color: #696969 !important;
+    }
+
+    .app-search {
+        width: 425px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .app-search .form-control {
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        width: 425px;
+        box-shadow: 0 3px 6px #d1d1d1;
+        padding-left: 32px;
+        background: #fff url('/assets/images/search.svg') 10px 13px no-repeat;
+    }
+
+    .log-svg {
+        height: 35px;
+        cursor: pointer;
+    }
+
+    .search-div {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+.main-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.app-block {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 6%), 0 3px 10px 0 rgb(0 0 0 / 6%);
+    width: 225px;
+    height: 225px;
+    margin-bottom: 13px;
+    position: relative;
+
+    .top-img {
+        position: absolute;
+        left: 80px;
+        top: 37px;
+        height: 65px;
+        width: 65px;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .top {
+        height: 30%;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        .title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600px;
+            max-width: 290px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 5px;
+            text-decoration: underline;
+            padding: 3px 10px 0;
+        }
+
+        .img-span {
+            height: 100%;
+            width: 100%;
+            display: flex;
+
+            img {
+                border-top-left-radius: 10px;
+                height: 100%;
+                width: 50%;
+                box-shadow: 0 3px 10px 0 rgb(0 0 0 / 6%), 0 3px 10px 0 rgb(0 0 0 / 6%);
+            }
+
+            .eye {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #fff;
+                border-top-right-radius: 10px;
+                box-shadow: 0 3px 10px 0 rgb(0 0 0 / 6%), 0 3px 10px 0 rgb(0 0 0 / 6%);
+
+                svg {
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    .bottom {
+        height: 70%;
+        width: 100%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 10px;
+        background: rgba(255, 0, 0, 0.2);
+
+
+        .description {
+            text-overflow: ellipsis;
+            max-height: 60px;
+            overflow: hidden;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 5px;
+            margin-top: 25px;
+        }
+
+        .genre-head {
+            text-decoration: underline;
+            margin-bottom: 2px;
+            text-align: center;
+        }
+
+        .genres {
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+
+    .bottom-details {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 10px;
+        background: rgba(255, 0, 0, 0.2);
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        border-top: 1px solid #d1d1d1;
+        box-shadow: 0 3px 10px 0 rgb(0 0 0 / 6%), 0 3px 10px 0 rgb(0 0 0 / 6%);
+    }
+
+
+}
+
+.bottom-card {
+    padding: 0;
+}
+
+.app-block:hover {
+    transform: scale(1.06) !important;
+    transition: 0.5s !important;
+    box-shadow: -3px -3px 40px black;
+    cursor: pointer;
+}
+
+.dark-theme,
+.dark-theme button {
+    background-color: #424242 !important;
+    color: #fff;
+    box-shadow: 0 3px 9px black !important;
+}
+
+.define-dark-theme div {
+    background-color: #424242 !important;
+
+    span {
+        background-color: #424242;
+    }
+}
+
+.data-card {
+    min-height: 80vh;
+}
+
+.no-data {
+    min-height: 70vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.theme-button {
+    margin-left: 10px;
+    font-size: 18px;
+    padding: 7px 15px;
+    border-radius: 10px;
+    border: none;
+    background: white;
+    box-shadow: 0 3px 9px #d1d1d1;
+    cursor: pointer;
+}
+
+.theme-button:hover {
+    background-color: #010433;
+    color: white;
+    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 6%), 0 3px 10px 0 rgb(0 0 0 / 6%);
+    transition: 1s ease-in-out;
+}
+
+.dialog-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:host ::ng-deep .p-paginator .p-dropdown {
+    width: 62px;
+    height: 24px;
+    border-color: #D5D5D5;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-trigger {
+    width: auto;
+    padding: 0 8px 0 10px;
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-trigger .p-dropdown-trigger-icon {
+    font-size: 10px;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-current {
+    order: 2;
+    position: absolute;
+    right: 55px;
+    font-size: 16px;
+    color: #404040 !important;
+    width: auto;
+    padding: 0;
+}
+
+:host ::ng-deep .dark-theme .p-paginator .p-paginator-current {
+    color: #fff !important;
+}
+
+:host ::ng-deep .dark-theme .p-paginator {
+    background-color: #424242 !important;
+}
+
+:host ::ng-deep .p-paginator p-dropdown {
+    position: absolute;
+    right: 250px !important;
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+    display: none !important;
+}
+
+:host ::ng-deep .p-paginator {
+    justify-content: start !important;
+}
+
+
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 2px 10px;
+}
+
+:host ::ng-deep .p-paginator .p-dropdown .p-dropdown-label {
+    font-size: 14px;
+    height: 100%;
+    padding: 0px !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page,
+:host ::ng-deep .p-paginator-element {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: inherit !important;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 3px;
+    margin: 0.143rem;
+}
+
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #010433;
+    border-color: #010433;
+    color: #fff;
+}
+
+:host ::ng-deep .p-paginator-prev.p-paginator-element,
+:host ::ng-deep .p-paginator-first.p-paginator-element,
+:host ::ng-deep .p-paginator-next.p-paginator-element,
+:host ::ng-deep .p-paginator-last.p-paginator-element {
+    background: #cccdd6;
+    border-color: #cccdd6;
+    margin: 0.143rem;
+}
+
+:host ::ng-deep.p-paginator-element .p-paginator-icon {
+    font-size: 12px;
+}
+
+:host ::ng-deep .p-paginator-prev.p-paginator-element:hover,
+:host ::ng-deep .p-paginator-first.p-paginator-element:hover,
+:host ::ng-deep .p-paginator-next.p-paginator-element:hover,
+:host ::ng-deep .p-paginator-last.p-paginator-element:hover,
+:host ::ng-deep .p-paginator-prev.p-paginator-element:focus,
+:host ::ng-deep .p-paginator-first.p-paginator-element:focus,
+:host ::ng-deep .p-paginator-next.p-paginator-element:focus,
+:host ::ng-deep .p-paginator-last.p-paginator-element:focus {
+    background: #fafbfd !important;
+    border-color: #d3d8e9 !important;
+    box-shadow: inset 0px 0px 0px 2px #d3d8e9;
+}
+
+.custom_paginator {
+    // margin-top: 20px !important;
+    margin-top: 13px !important;
+}
+
+
+:host ::ng-deep .p-dialog {
+    min-width: 416px !important;
+    border-radius: 10px;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    color: #000000;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header .p-dialog-header-icons {
+    display: none !important;
+}
+
+:host ::ng-deep .dark-theme .p-dialog .p-dialog-header {
+    color: white !important;
+    background-color: #424242 !important;
+}
+
+:host ::ng-deep .dark-theme .p-dialog .p-dialog-content {
+    color: white !important;
+    background-color: #424242 !important;
+}
+
+:host ::ng-deep .dark-theme .p-dialog .p-dialog-footer {
+    color: white !important;
+    background-color: #424242 !important;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+:host ::ng-deep .p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+    margin-left: 0;
+    color: #656565;
+}
+
+:host ::ng-deep .p-button .p-button-icon-left {
+    display: none;
+}
+
+:host ::ng-deep .p-button,
+:host ::ng-deep .p-button:hover {
+    background-color: #FFB14A !important;
+    color: white;
+    border-radius: 40px;
+    border: 1px solid #FFB14A;
+    padding: 0.4rem 1.2rem;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
+    color: black;
+}
+
+:host ::ng-deep .p-button:enabled:active {
+    border-color: #FFB14A !important;
+    background-color: #FFB14A !important;
+}
+
+:host ::ng-deep .p-button:focus {
+    box-shadow: none !important;
+}
+
+.dialog-top {
+    display: flex;
+    align-items: center;
+
+    .dialog-img {
+        height: 80px;
+        width: 80px;
+
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+
+    .dialog-title {
+        margin-left: 20px;
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            font-weight: bolder;
+            text-decoration: underline;
+        }
+    }
+}
+
+.dialog-description {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    .dialog-desc-title {
+        font-size: 22px;
+        margin-bottom: 5px;
+        text-decoration: underline;
+    }
+}
+
+.dialog-genres {
+    .dialog-desc-title {
+        font-size: 22px;
+        margin-bottom: 5px;
+        text-decoration: underline;
+    }
+}
