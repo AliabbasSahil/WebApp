@@ -23,7 +23,6 @@ import { AuthGuard } from './shared/guards/auth.guard';
     ReactiveFormsModule,
     FormsModule,
     ToastModule
-
   ],
   providers: [
     {
