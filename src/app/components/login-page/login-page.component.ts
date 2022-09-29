@@ -50,5 +50,4 @@ export class LoginPageComponent implements OnInit {
       return
     }
   }
-
 }
