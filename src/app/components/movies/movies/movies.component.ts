@@ -1,10 +1,6 @@
-import { Component, OnInit, ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
-import { appConfig } from 'src/app/ap.cconfig';
-import { SharedServiceService } from 'src/app/shared/shared-service.service';
-import { fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-movies',
@@ -12,76 +8,105 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  @ViewChild('searchInput') searchInput!: ElementRef;
-  isDarkTheme = false
-  movies : any[] = []
-  originalArray : any[] = []
-  randomPic! : string
-  detailsModal = false
-  selected : any
-  rowCount!: number;
-  page = 1;
-  totalRecords = 0
+  
+  daily = true;
+  month = false;
+  pending = false;
+  data: any;
+  data2: any;
+  chartOptions: any;
+  chartOptions2: any;
+
+  products: any[] = [{ task: 'Task 1', name: 'Ravi', status: 'Completed' }, { task: 'Task 2', name: 'Adil', status: 'In Progress' }, { task: 'Task 3', name: 'Vivek', status: 'Pending' }, { task: 'Task 4', name: 'Roy', status: 'Completed' }, { task: 'Task 5', name: 'Amit', status: 'In Progress' }];
+  pendingTasks: any[] = [{ task: 'Task 6', name: 'Teja', status: '20 Sep 2022' }, { task: 'Task 7', name: 'Aviram', status: '21 Sep 2022' }, { task: 'Task 8', name: 'Vikram', status: '23 Sep 2022' }, { task: 'Task 9', name: 'Vedha', status: '24 Sep 2022' }, { task: 'Task 10', name: 'Shiva', status: '28 Sep 2022' }];
+  monthlyTasks: any[] = [{ task: 'Task 1', name: 'Ravi', status: 'Completed' }, { task: 'Task 2', name: 'Adil', status: 'In Progress' }, { task: 'Task 6', name: 'Vivek', status: 'Pending' }, { task: 'Task 4', name: 'Roy', status: 'Completed' }, { task: 'Task 9', name: 'Vedha', status: 'Pending' }];
+
+  boy = "./../../../../assets/images/boy.jpg";
+  girl = "./../../../../assets/images/girl.jpg";
+  profileImg = './../../../../assets/images/avatar.png'
 
   constructor(
-    public sharedService : SharedServiceService,
-    public router : Router,
-    public messageService : MessageService
+    public router: Router,
+    public messageService: MessageService
   ) { }
 
   ngOnInit(): void {
-    this.getData(this.page)
+    // this.getData(this.page)
+
+    this.data2 = {
+      labels: ['Completed', 'Pending', 'In Progress'],
+      datasets: [
+        {
+          data: [300, 50, 100],
+          backgroundColor: [
+            "#42A5F5",
+            "#66BB6A",
+            "#FFA726"
+          ],
+          hoverBackgroundColor: [
+            "#64B5F6",
+            "#81C784",
+            "#FFB74D"
+          ]
+        }
+      ]
+    }
+
+    this.data = {
+      labels: ['Completed', 'Pending', 'In Progress'],
+      datasets: [
+        {
+          data: [1500, 120, 400],
+          backgroundColor: [
+            "#42A5F5",
+            "#66BB6A",
+            "#FFA726"
+          ],
+          hoverBackgroundColor: [
+            "#64B5F6",
+            "#81C784",
+            "#FFB74D"
+          ]
+        }
+      ]
+    }
+
+    this.chartOptions = this.getLightTheme()
+
+    this.chartOptions2 = this.getLightTheme()
+
   }
 
-  getData(page:any){
-    this.sharedService.getMovieList(page).subscribe((response:any) => {
-      if(response.results.length>0){
-        this.movies = response.results
-        this.movies = this.movies.map((el:any) => ({
-          title : el.title,
-          description : el.description,
-          genres : el.genres,
-          uuid:el.uuid,
-          imgUrl:`${appConfig.avatar}`+el.title
-        } ))
-        this.originalArray = this.movies
+  getDarkTheme() {
+    return {
+      plugins: {
+        legend: {
+          labels: {
+            color: '#ebedef'
+          }
+        }
       }
-      this.totalRecords = response.count
-    },(error:any) => {     
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: error ? error.message : 'Something went wrong' });
     }
-    )
   }
 
-    loadMovies(event : any) {
-      this.page = (event.first / event.rows) + 1;
-      this.getData(this.page)
+  getLightTheme() {
+    return {
+      plugins: {
+        legend: {
+          labels: {
+            color: '#495057'
+          }
+        }
+      }
     }
+  }
 
-   viewDetails(data:any){
-    this.selected = data
-    this.detailsModal = true
-   }
 
-   changeTheme(){
-    this.isDarkTheme = !this.isDarkTheme
-   }
 
-   logout(){
-    localStorage.clear()
+  logout() {
     this.router.navigate(['/login'])
-   }
-
-   ngAfterViewInit() {
-    fromEvent(this.searchInput.nativeElement, 'keyup').pipe(debounceTime(250), distinctUntilChanged(), tap(() => {
-      if(this.originalArray.length>0 && (this.searchInput.nativeElement.value.length%3===0)){       
-       this.movies = this.originalArray.filter((el) => (el.title.toUpperCase().indexOf(this.searchInput.nativeElement.value.toUpperCase())>-1) )
-      }
-    })).subscribe();
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logged out succsesfully' });
   }
 
-  refreshPage(){
-    this.getData(this.page)
-  }
 
 }

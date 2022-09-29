@@ -1,128 +1,217 @@
-<div [ngClass]="isDarkTheme ? 'define-dark-theme':'define-light-theme'">
-  <mat-card class="main-card">
-    <mat-card class="data-card">
-      <div class="main-header">
-        <div class="search-div">
-          <div class="app-search mr-10">
-            <input [ngClass]="isDarkTheme ? 'dark-theme':'light-theme'" type="text" placeholder="Search"
-              class="form-control w-100" #searchInput>
+<section class="main">
+  <section class="header">
+    <div class="left-portion">
+      <img class="logo" src="./../../../../assets/images/log.png" alt="">
+      <div class="app-search">
+        <input type="text" placeholder="Search" class="form-control w-100">
+      </div>
+    </div>
+    <div>
+      <!-- <div class="logged-in-user">
+        <img src="{{profileImg}}" alt="User">
+      </div> -->
+      <div (click)="logout()" class="right" >
+        <em [appAppSvgIconDirective]="'logout'" ></em>
+      </div>
+    </div>
+  </section>
+
+  <section class="center-div">
+    <div class="main-center-div">
+      <div class="sidebar-div">
+        <div class="top">
+          <div class="back-div">
+            <img class="profile" src="./../../../../assets/images/profile.png" alt="">
           </div>
-          <button [ngClass]="isDarkTheme ? 'dark-theme':'light-theme'" (click)="changeTheme()" *ngIf="!isDarkTheme"
-            class="theme-button">
-            Dark Theme
-          </button>
-          <button [ngClass]="isDarkTheme ? 'dark-theme':'light-theme'" (click)="changeTheme()" *ngIf="isDarkTheme"
-            class="theme-button">
-            Light Theme
-          </button>
-          <button (click)="refreshPage()" [ngClass]="isDarkTheme ? 'dark-theme':'light-theme'" class="theme-button">
-            Refresh Page
-          </button>
+          <p>Ali Abbas</p>
         </div>
-        <div>
-          <svg (click)="logout()" class="log-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M534.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L434.7 224 224 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM192 96c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-53 0-96 43-96 96l0 256c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-          </svg>
+
+        <div class="sidebar" >
+          <ul>
+            <li class="active" routerLink="/dashboard" routerLinkActive="active" >
+               <em [appAppSvgIconDirective]="'dashboard'" ></em>
+               <p>Dashboard</p>
+              </li>
+              <li>
+                <em [appAppSvgIconDirective]="'home'" ></em>
+                <p>Home</p>
+               </li>
+               <li>
+                <em [appAppSvgIconDirective]="'employees'" ></em>
+                <p>Employees</p>
+               </li>
+               <li>
+                <em [appAppSvgIconDirective]="'phone'" ></em>
+                <p>Contacts</p>
+               </li>
+               <li>
+                <em [appAppSvgIconDirective]="'settings'" ></em>
+                <p>Settings</p>
+               </li>
+          </ul>
         </div>
 
       </div>
 
-      <div class="main-div">
+      <div class="sub-center-div">
+        <div class="head">
+          <h2>Tasks</h2>
+          <div class="ul-list">
+            <ul>
+              <li (click)="daily=true;month=false;pending=false" [class.active-li]="daily">
+                Daily
+              </li>
+              <li (click)="daily=false;month=false;pending=true" [class.active-li]="pending">
+                Pending
+              </li>
+              <li (click)="daily=false;month=true;pending=false" [class.active-li]="month">
+                Monthly
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        <div *ngFor="let recent of movies">
-          <div (click)="viewDetails(recent)" class="app-block">
+        <div class="last">
+          <div class="mid">
 
 
-            <div class="top-img">
-              <img [src]="recent.imgUrl" alt="">
-            </div>
+            <p-table *ngIf="daily" [value]="products" responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Name</th>
+                  <th>Alloted To</th>
+                  <th>Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>{{product.task}}</td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
 
-            <div class="top">
+            <p-table *ngIf="pending" [value]="pendingTasks" responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Name</th>
+                  <th>Alloted To</th>
+                  <th>Alloted On</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>{{product.task}}</td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
 
-              <h2 class="title">{{recent.title}}</h2>
+            <p-table *ngIf="month" [value]="monthlyTasks" responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Name</th>
+                  <th>Alloted To</th>
+                  <th>Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>{{product.task}}</td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
 
+          </div>
+          <div class="bot">
 
+            <div class="head">
+              <h2>Revenue Details</h2>
             </div>
 
             <div class="bottom">
+              <div class="first">
+                <p class="p1">Today</p>
+                <p class="p2">$2000</p>
+              </div>
+              <div class="first">
+                <p class="p1">This Month</p>
+                <p class="p2">$60000</p>
+              </div>
+              <div class="first">
+                <p class="p1">This Year</p>
+                <p class="p2">$720000</p>
+              </div>
+            </div>
 
-              <p class="description">
-                {{recent.description}}
-              </p>
+          </div>
+        </div>
 
-              <p class="genre-head">
-                Genres
-              </p>
 
-              <p *ngIf="recent.genres !==''" class="genres">
-                {{recent.genres}}
-              </p>
-              <p *ngIf="recent.genres ===''" class="genres">
-                not known
-              </p>
+      </div>
+
+      <div class="right">
+        <div class="top">
+          <div class="head">
+            <h2>Star Performers</h2>
+          </div>
+          <div class="sub-bottom">
+            <div class="main-sub">
+
+              <div style="margin-right: 20px;" class="img-div">
+                <img [src]="boy" alt="" class="image">
+
+                <p class="product-name">Amit Juneja</p>
+                <p class="description"> Frontend Developer
+                  <!-- <span>20% off</span>  -->
+                  <!-- Only on $200 -->
+                </p>
+
+              </div>
+
+              <div class="img-div">
+                <img [src]="girl" alt="" class="image">
+                <p class="product-name">Parul Singh</p>
+                <p class="description"> Backend Developer
+                  <!-- <span>35% off</span> Only on $300 -->
+                </p>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="head">
+            <h2>Task Status Daily vs Monthly</h2>
+          </div>
+          <div class="sub-bottom">
+
+            <!-- <p-chart type="pie" [data]="data" [options]="chartOptions"  [style]="{'height': '200px'}"></p-chart> -->
+
+            <div class="doughnut-div">
+              <p-chart type="pie" [data]="data2" [options]="chartOptions" [style]="{'width': '40%'}"></p-chart>
+            </div>
+
+            <div class="doughnut-div">
+              <p-chart type="pie" [data]="data" [options]="chartOptions2" [style]="{'width': '40%'}"></p-chart>
             </div>
 
 
 
           </div>
         </div>
-        <div class="no-data" *ngIf="movies.length===0">
-          No data exist
-        </div>
       </div>
-    </mat-card>
 
-    <mat-card class="bottom-card">
-
-      <div class="d-flex justify-content-between align-items-center custom_paginator paginator-top w-100">
-
-        <p-paginator [ngClass]="isDarkTheme ? 'dark-theme':'light-theme'" class="custom_paginator" [rows]="20"
-          [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} - {last} of {totalRecords}"
-          (onPageChange)="loadMovies($event)" [rowsPerPageOptions]="[10]" [pageLinkSize]="3"
-          [totalRecords]="totalRecords"></p-paginator>
-
-
-      </div>
-    </mat-card>
-  </mat-card>
-</div>
-
-<p-dialog [ngClass]="isDarkTheme ? 'dark-theme':'light-theme'" *ngIf="detailsModal" header="Details"
-  [(visible)]="detailsModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
-  <div>
-
-    <div class="dialog-top">
-      <div class="dialog-img">
-        <img [src]="selected.imgUrl" alt="">
-      </div>
-      <div class="dialog-title">
-        <h2>{{selected.title}}</h2>
-      </div>
     </div>
+  </section>
 
-    <div class="dialog-description">
-      <h3 class="dialog-desc-title">Description</h3>
-      <p class="dialog-desc-description">
-        {{selected.description}}
-      </p>
-    </div>
-
-    <div class="dialog-genres">
-      <h3 class="dialog-desc-title">Genres</h3>
-      <p *ngIf="selected.genres !==''">
-        {{selected.genres}}
-      </p>
-      <p *ngIf="selected.genres ===''">
-        not known
-      </p>
-    </div>
-
-    <div class="dialog-button">
-      <button (click)="detailsModal=false;" class="theme-button">Close</button>
-    </div>
-
-  </div>
-  <p-footer>
-  </p-footer>
-</p-dialog>
+  <section class="footer">
+    <p class="foot-para">Created by Ali Abbas</p>
+  </section>
+</section>

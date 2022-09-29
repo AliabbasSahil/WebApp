@@ -26,16 +26,6 @@ export class SharedServiceService {
     return this.postData(loginUrl,data)
   }
 
-  getMovieList(page:any){
-    const url = `${appConfig.maya}/movies/?page=${page}`
-    return this.getData(url)
-  }
-
-  getData(url:any) {
-    return this.httpclient.get<any>(url).pipe(catchError((error) => {
-        return this.errorHandler(error);
-    }));
-}
 
 /**
  * To save data

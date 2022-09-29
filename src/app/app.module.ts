@@ -7,8 +7,6 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
-import { AppInterceptor } from './shared/interceptors/interceptor';
-import { AuthGuard } from './shared/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -25,12 +23,6 @@ import { AuthGuard } from './shared/guards/auth.guard';
     ToastModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AppInterceptor,
-      multi: true
-    },
-    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

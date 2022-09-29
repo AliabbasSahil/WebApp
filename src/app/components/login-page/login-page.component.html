@@ -10,17 +10,18 @@
         <div class="square" style="--i:4;" ></div>
         <div class="container">
             <div class="form">
-                <h2>Moviewood</h2>
+                <h2>DevApp</h2>
                 <form [formGroup]="loginForm" >
                     <div class="inputBox">
-                        <input type="text" placeholder="Username" formControlName="username" >
-                        <div [hidden]="!submitted || loginForm.controls['username'].valid">
-                            <small class="text-danger" [hidden]="loginForm.controls['username'].valid">username is required</small>
+                        <input type="text" placeholder="Email" formControlName="username" >
+                        <div [hidden]="loginForm.controls['username'].valid">
+                            
+                            <small class="text-danger" [hidden]="loginForm.controls['username'].valid">Please enter email</small>
                         </div>
                     </div>
                     <div class="inputBox">
                         <input type="password" placeholder="Password" formControlName="password" >
-                        <div [hidden]="!submitted || loginForm.controls['password'].valid">
+                        <div [hidden]="loginForm.controls['password'].valid">
                             <small class="text-danger" [hidden]="loginForm.controls['password'].valid">password is required</small>
                         </div>
                     </div>
