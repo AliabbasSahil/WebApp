@@ -14,19 +14,19 @@
                 <form [formGroup]="loginForm" >
                     <div class="inputBox">
                         <input type="text" placeholder="Email" formControlName="username" >
-                        <div [hidden]="loginForm.controls['username'].valid">
+                        <div [hidden]="!submitted || loginForm.controls['username'].valid">
                             
                             <small class="text-danger" [hidden]="loginForm.controls['username'].valid">Please enter email</small>
                         </div>
                     </div>
                     <div class="inputBox">
                         <input type="password" placeholder="Password" formControlName="password" >
-                        <div [hidden]="loginForm.controls['password'].valid">
+                        <div [hidden]="!submitted || loginForm.controls['password'].valid">
                             <small class="text-danger" [hidden]="loginForm.controls['password'].valid">password is required</small>
                         </div>
                     </div>
                     <div class="inputBox">
-                        <button type="button" [disabled]="loginForm.invalid" (click)="submit()" >Login</button>
+                        <button type="button" (click)="submit()" >Login</button>
                     </div>
                 </form>
             </div>

@@ -20,6 +20,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginForm!: FormGroup;
+  submitted = false
 
   ngOnInit(): void {
     this.initLoginForm()
@@ -40,9 +41,14 @@ export class LoginPageComponent implements OnInit {
 
 
   submit() {
+    this.submitted = true
+    if(this.submitted && this.loginForm.valid){
     this.router.navigate(['dashboard']);
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logged in succsesfully' });
-
+    }
+    else{
+      return
+    }
   }
 
 }
